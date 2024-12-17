@@ -7,8 +7,8 @@ final class Config
         'db' => [
             'host' => 'clear-mysql-container',
             'dbname' => 'app',
-            'username' => 'user',
-            'password' => 'password',
+            'username' => 'root',
+            'password' => 'root',
         ],
         'currency_api' => [
             'key' => 'YOUR_KEY',
