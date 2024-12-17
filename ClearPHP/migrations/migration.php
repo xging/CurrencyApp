@@ -6,7 +6,7 @@ $db = new Database();
 $pdo = $db->getConnection();
 
 try {
-
+    $pdo->exec("SET GLOBAL log_bin_trust_function_creators = 1");
     $pdo->exec("CREATE TABLE IF NOT EXISTS currency_pairs (
         id INT AUTO_INCREMENT PRIMARY KEY,
         from_currency VARCHAR(3) NOT NULL,
