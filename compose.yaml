@@ -10,12 +10,18 @@ services:
       - ./src:/var/www/html/src
       - ./migrations:/var/www/html/migrations
       - ./vendor:/var/www/html/vendor
-    working_dir: /var/www/html/public
+      - ./:/var/www/html
+    working_dir: /var/www/html
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     container_name: clear-php-container
     networks:
       - app_network
+    restart: unless-stopped
+    command: sh -c "composer install --no-interaction && \
+      php migrations/migration.php && \
+      php-fpm"
 
   nginx:
     image: nginx:latest
@@ -46,6 +52,12 @@ services:
     container_name: clear-mysql-container
     networks:
       - app_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 3s
 
 volumes:
   mysql_data:
