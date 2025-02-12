@@ -18,23 +18,14 @@ Follow these steps to install the project:
 1. Clone the repository:
    ```bash
    git clone https://github.com/xging/CurrencyApp.git
-
-2. In project folder "ClearPHP" open console and install composer.
-   ```bash
-   composer install
-3. Change API Key to yours from (https://app.freecurrencyapi.com/dashboard) 
+2. Change API Key to yours from (https://app.freecurrencyapi.com/dashboard) 
    ```bash
     File to change: src/Config.php:
     Line to change: 'key' => 'YOUR_KEY'
-4. Build and start containers with Docker Compose
+3. Build and start containers with Docker Compose
    ```bash
    docker-compose up --build
-
-5. Run migration
-   ```bash
-   docker exec -it clear-php-container bash
-   php ../migrations/migration.php
-
+   
 ## Usage
 ## Console (docker exec -it clear-php-container bash)
 
